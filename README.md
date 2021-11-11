@@ -1,6 +1,6 @@
 Introduction 
 
-The goal of this project is to repodroduce parts of the analysis described in these papers :
+The goal of this project is to reproduce parts of the analysis described in these papers :
 https://pubmed.ncbi.nlm.nih.gov/23313955/
 https://pubmed.ncbi.nlm.nih.gov/23861464/
 
