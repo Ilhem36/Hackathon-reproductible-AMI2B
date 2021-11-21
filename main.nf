@@ -99,7 +99,6 @@ process HumanGenomeAnnotation{
     gunzip -c HumanGenome.gtf.gz > HumanGenome.gtf 
     """
 }
-/*
 process mappingfq {
 
     publishDir "results/Mapping/"
@@ -127,4 +126,38 @@ process mappingfq {
     > ${sraid}.bam
     """
 }
-*/
+process generating_bam_files {
+    /*
+    Input : Bam files from the previous process
+    Output : Indexed bam files 
+    Function : Indexing bam files
+    */
+    publishDir "results/bam_files/"
+    
+    input: 
+    file bam from bam1 /* normalment on prends les 2 bam  ou juste un seul fichier bam de l'autre process*/
+    
+    output:
+    file "${bam}.bai" into bam_index_files
+    
+    script:
+    """
+    samtools index $bam
+    """
+}
+process counting_Reads_Matrix {
+   publishDir "results/featureCounts/"
+    
+    input:
+    file bam_files from bam_index_files.collect()
+    file bam from bam2.collect()
+    val gtf from gff
+    
+    output:
+    file "featureCounts_Matrix.txt" into Counting_reads
+    
+    script: 
+    """
+    featureCounts -T ${task.cpus} -t gene -g gene_id -s 0 -a $gtf -o featureCounts_Matrix.txt ${bam}
+    """
+}
