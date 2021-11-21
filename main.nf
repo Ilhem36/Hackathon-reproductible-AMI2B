@@ -145,6 +145,7 @@ process generating_bam_files {
     samtools index $bam
     """
 }
+
 process counting_Reads_Matrix {
    publishDir "results/featureCounts/"
     
