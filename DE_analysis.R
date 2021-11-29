@@ -10,9 +10,9 @@ library("tidyverse")
 library("RColorBrewer")
 
 ################### Loading  Data ################### 
-
-meta<-read.table("SraRunTable.txt", header = TRUE, sep = ",",row.names = 1)
-data<-read.table("featureCounts_Matrix.txt", header = TRUE, sep = "",row.names = 1)
+args = commandArgs(TRUE)
+meta<-read.table(args[1], header = TRUE, sep = ",",row.names = 1)
+data<-read.table(args[2], header = TRUE, sep = "",row.names = 1)
 rownames(data) = gsub("[a-zA-Z ]", "", rownames(data))
 rownames(data) = as.integer(rownames(data))
 
