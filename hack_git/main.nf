@@ -225,7 +225,7 @@ process stat_analysis {
     
     script:
     """
-    Rscript ${workflow.projectDir}/bin/stat_dernier.R ${meta_Data} ${count_Data} "Plots" 
+    Rscript ${workflow.projectDir}/stat/stat_dernier.R ${meta_Data} ${count_Data} "Plots" 
     """
 }
 
