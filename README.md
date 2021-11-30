@@ -23,12 +23,12 @@ Le package tidyverse (version 1.3.1), nous n'avons pas pu l'installer dans le co
 # Etapes du workflow
 
 1) "DownloadSRR", "fastqZipping" et "chromosomedownloading": Il s'agit du téléchargement de données des chromosomes humains et mitochondriaux ainsi que la compression du fichier. Il s'agit également de l'annotation du génome humain et des 8 données RNA-seq des 8 individus, issus du projet [SRP017413].
-2) *CompleteGenome* et *genomeIndexation : C'est la construction ainsi que l'indexation du génome humain avec STAR.
-3) *HumanGenomeAnnotation*: Conversion des données RNA-seq en .fastq avec sratoolkit.
-4) *mappingfq*: C'est la réalisation de l'alignement et du tri des données RNA-seq sur le génome humain avec STAR. Les sorties sont des fichiers .bam triés.
-5) *generating_bam_files* : Il s'agit de l'indexation des fichiers .bam. en .bai avec samtools
-5) *counting_Reads_Matrix* : On réalise le comptage des séquences exprimées pour chaque patient avec la fonction featureCount de subread
-6) *stat_analysis*: C'est l'analyse statistique des résultats avec DESeq2 et FactoMineR.
+2) "CompleteGenome" et "genomeIndexation" : C'est la construction ainsi que l'indexation du génome humain avec STAR.
+3) "HumanGenomeAnnotation": Conversion des données RNA-seq en .fastq avec sratoolkit.
+4) "mappingfq": C'est la réalisation de l'alignement et du tri des données RNA-seq sur le génome humain avec STAR. Les sorties sont des fichiers .bam triés.
+5) "generating_bam_files" : Il s'agit de l'indexation des fichiers .bam. en .bai avec samtools
+5) "counting_Reads_Matrix" : On réalise le comptage des séquences exprimées pour chaque patient avec la fonction featureCount de subread
+6) "stat_analysis": C'est l'analyse statistique des résultats avec DESeq2 et FactoMineR.
 
 #Exécution rapide
 Afin de pouvoir exécuter le workflow (main.nf), il est nécessaire d'utiliser Nextflow (version 20.10.0). De plus, cette exécution se déroule bien dans une machine virtuelle avec Go de RAM. Pour exécuter le workflow, il faut donc récupérer nextflow.config, main.nf, metaData.txt et stat_dernier.R en local, ouvrir un terminal puis exécuter les commandes :
@@ -50,10 +50,10 @@ $ nextflow run main.nf -resume
 - "stat_dernier.R" il s'agit du script R que l'on retrouve dans le dernier processus du workflow. Il permet de réaliser l'analyse statistique des résultats de comptage qui sont issus des données RNA-seq ;
 - "resultats": ce ficher contient tous les résultats obtenus.
 
-#### Informations concernant l'installation de l'image du Docker et sa publication sur le hub Docker
+#Informations concernant l'installation de l'image du Docker et sa publication sur le hub Docker
 
-# Installation et activation de docker image
-# Pour créer une image Docker, tout d'abord nous avons installé le Docker Desktop et nous avons créé un compte. Ensuite, nous avons créé un Dockerfile contenant nos packages à installer, puis nous avons utilisé la commande: 
+Installation et activation de docker image
+Pour créer une image Docker, tout d'abord nous avons installé le Docker Desktop et nous avons créé un compte. Ensuite, nous avons créé un Dockerfile contenant nos packages à installer, puis nous avons utilisé la commande: 
 docker build -t fatmaammar/test14
 Pour utiliser l'image construite localement, nous l'avons partagée sur Docker Hub en faisant:
 Push to hub
