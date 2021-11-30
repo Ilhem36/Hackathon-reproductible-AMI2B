@@ -36,7 +36,7 @@ all(colnames(new_data) == rownames(coldata))
 labels = c("SRR628582", "SRR628583", "SRR628584", "SRR628585", "SRR628586", "SRR628587", "SRR628588", "SRR628589")
 mutations = c("M", "M", "WT", "WT", "WT", "WT", "WT", "M")
 labels2 = data.frame(labels, mutations)
-# Order the tissue types so that it is sensible and make sure the control sample is first: WT -> M:muté
+# Order the tissue types so that it is sensible and make sure the control sample is first: WT -> M:mutÃ©
 labels2$mutations<-factor(labels2$mutations,levels=c("WT","M"))
 
 ###################### I- RNA-seq count distribution   #########################
@@ -56,7 +56,7 @@ tran_data<-t(new_data)
 res_pca<-PCA(tran_data,graph = FALSE)
 
 plot_pca=fviz_pca_ind (res_pca,
-              repel = TRUE, # Évite le chevauchement de texte, 
+              repel = TRUE, # Ã‰vite le chevauchement de texte, 
               col.ind = mutations, # colorer par groupe
               palette = c("#8f2c4e", "#30bfbf"),
               legend.title = "Sample Type",
@@ -97,7 +97,7 @@ summary(res)
 
 #### Set thresholds to extract significant differencial expression genes  ###########
 p_adj<-0.05
-LFC<-2
+LFC<-0.5
 
 #### Results with the fixed thersholds#####
 new_res<-results(DESeq_object, alpha = p_adj, lfcThreshold = LFC)
